@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿
+using System.Text.Json;
 
 
 namespace DataProcessor
@@ -16,17 +17,17 @@ namespace DataProcessor
             string csvDir = args[1];
             string outputFormat = args[2];
 
-            if(!Directory.Exists(_outputDir))
+            if (!Directory.Exists(_outputDir))
             {
                 throw new ArgumentException("Podana ścieżka jest nieprawidłowa");
             }
 
-            if(!File.Exists(csvDir))
+            if (!File.Exists(csvDir))
             {
                 throw new FileNotFoundException($"Plik {csvDir} nie istnieje");
             }
 
-            if(outputFormat != "json")
+            if (outputFormat != "json")
             {
                 throw new ArgumentException($"Dostępna jest jedynie konwersja do formatu json, podałeś {outputFormat}");
             }
@@ -49,22 +50,22 @@ namespace DataProcessor
                     continue;
                 }
                 {
-                Student student = new Student
-                {
-                    Fname = values[0],
-                    Lname = values[1],
-                    IndexNumber = values[4],
-                    Birthdate = values[5],
-                    Email = values[6],
-                    MothersName = values[7],
-                    FathersName = values[8],
-                    Studies = new Studies
+                    Student student = new Student
                     {
-                        Name = values[2],
-                        Mode = values[3]
-                    }
-                };
-                students.Add(student);
+                        Fname = values[0],
+                        Lname = values[1],
+                        IndexNumber = values[4],
+                        Birthdate = values[5],
+                        Email = values[6],
+                        MothersName = values[7],
+                        FathersName = values[8],
+                        Studies = new Studies
+                        {
+                            Name = values[2],
+                            Mode = values[3]
+                        }
+                    };
+                    students.Add(student);
                 }
             }
 
